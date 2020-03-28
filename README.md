@@ -1,16 +1,33 @@
-﻿Ultimate_crawl_artistname:
-這隻先從Ultimate Guitar Tab網站上爬Pop music的歌手名字與每個歌手的URL下來
-之後就可以針對每個歌手的URL把歌手的所有譜抓下來
+`Ultimate_crawl_artistname`
+  + Website:[Ultimate Guitar](https://www.ultimate-guitar.com/)
+  + Target:
+    + Artist name
+    + Artist Url
+    
+Description:
+這隻爬取網站上Pop music的歌手名字與URL下來
+之後就可以針對每個歌手的URL把所有譜抓下來
 
-Ultimate_craw:
+___ 
 
-先從Mongo,Ultimate_Guitar_Artist資料表把流行樂歌手的url撈出來
-例如:想抓beatles的吉他譜，先拿到URL:https://www.ultimate-guitar.com/artist/the_beatles_1916
-然後就會看到beatles所有的歌
-選擇type=chord的吉他譜
+`Ultimate_craw`
+  + Source:MongoDB:Ultimate_Guitar_Artist
+  + Target: Html of Tabs
+  + Save To:MongoDB:
 
-然後就可以用Ultimate_craw透過歌手URL把每個歌手的所有吉他譜抓下來，存在Mongo DB(先抓HTML存Mongo，再撈出來解析，以免資料不見又要重爬)
+Description:從MongoDB取出流行樂歌手名稱與URL資料，爬取每一位歌手的吉他譜Html
 
-Ultimate_craw_TabHtmlParse:
+例如:
++ 想抓beatles的所有吉他譜
++ 請求URL:https://www.ultimate-guitar.com/artist/the_beatles_1916
++ 選擇type=chord的吉他譜
+
+透過歌手URL把每個歌手的所有吉他譜頁面的Html抓下來，存在Mongo DB(先抓HTML存Mongo，之後取出來解析)
+___
+
+
+`Ultimate_craw_TabHtmlParse`
+
+Description
 這支把爬下來的HTML從MongoDB撈出來並解析HTML以取得資訊(歌手、歌名、歌曲和弦、曲譜Rating等等)並存回MongoDB
 
